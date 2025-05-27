@@ -26,7 +26,7 @@ export const syncUserCreation = inngest.createFunction(
     const userData = {
       _id: id, // Assuming _id is used in your MongoDB schema
       email: email_addresses[0].email_address,
-      name: `${first_name} ${last_name}`,
+      name: first_name + " " + last_name,
       imageUrl: image_url,
     };
 
@@ -48,7 +48,7 @@ export const syncUserUpdating = inngest.createFunction(
     const userData = {
       _id: id,
       email: email_addresses[0].email_address,
-      name: `${first_name} ${last_name}`,
+      name: first_name + " " + last_name,
       imageUrl: image_url,
     };
 

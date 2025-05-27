@@ -1,12 +1,11 @@
 import mongoose from "mongoose";
-import { cache } from "react";
 
 // Cache object to store the Mongoose connection and promise
 // Uses Node's global object to persist across hot reloads in development
 let cached = global.mongoose;
 
 // Initialize the cache if it doesn't exist
-if (!cache) {
+if (!cached) {
   cached = global.mongoose = { conn: null, promise: null };
 }
 
