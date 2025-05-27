@@ -1,8 +1,8 @@
+import { Inngest } from "inngest";
+import connectDB from "./db";
+import User from "@/models/User";
+
 // Import required modules and models
-import { Inngest } from "inngest"; //Event-driven architecture library
-import connectDB from "./db"; // Database connection utility
-import User from "@/models/User"; //  User model/schema
-// import Order from "@/models/Order"; // Order model/schema
 
 // Create an Inngest client instance instance for event handling
 // This will be used to send and receive events throughout the application
