@@ -2,7 +2,7 @@
 import { Inngest } from "inngest"; //Event-driven architecture library
 import connectDB from "./db"; // Database connection utility
 import User from "@/models/User"; //  User model/schema
-import Order from "@/models/Order"; // Order model/schema
+// import Order from "@/models/Order"; // Order model/schema
 
 // Create an Inngest client instance instance for event handling
 // This will be used to send and receive events throughout the application
@@ -70,28 +70,28 @@ export const syncUserDeleting = inngest.createFunction(
 );
 
 // Batch Create Orders
-export const createUserOrder = inngest.createFunction(
-  {
-    id: "create-user-order",
-    batchEvents: {
-      maxSize: 5,
-      timeout: "5s",
-    },
-  },
-  { event: "order/created" },
-  async ({ events }) => {
-    const orders = events.map((event) => {
-      return {
-        userId: event.data.userId,
-        items: event.data.items,
-        amount: event.data.amount,
-        address: event.data.address,
-        date: event.data.date,
-      };
-    });
+// export const createUserOrder = inngest.createFunction(
+//   {
+//     id: "create-user-order",
+//     batchEvents: {
+//       maxSize: 5,
+//       timeout: "5s",
+//     },
+//   },
+//   { event: "order/created" },
+//   async ({ events }) => {
+//     const orders = events.map((event) => {
+//       return {
+//         userId: event.data.userId,
+//         items: event.data.items,
+//         amount: event.data.amount,
+//         address: event.data.address,
+//         date: event.data.date,
+//       };
+//     });
 
-    await connectDB();
-    await Order.insertMany(orders);
-    return { success: true, processed: orders.length };
-  }
-);
+//     await connectDB();
+//     await Order.insertMany(orders);
+//     return { success: true, processed: orders.length };
+//   }
+// );
