@@ -12,7 +12,7 @@ if (!cached) {
 /**
  * Connects to MongoDB using Mongoose with connection caching
  * Implements a singleton pattern to prevent multiple connections in serverless environments
- * @returns {Promise<mongoose.Connection>} Estbalished Mongoose connection
+ * @returns {Promise<mongoose.Connection>} Established Mongoose connection
  */
 async function connectDB() {
   // Return cached connection if available
@@ -26,7 +26,7 @@ async function connectDB() {
       bufferCommands: false, // Disables Mongoose buffering to fail fast if not connected
     };
 
-    //Create connection promise and store in cache
+    // Create connection promise and store in cache
     cached.promise = mongoose
       .connect(`${process.env.MONGODB_URI}/ecommerce`, opts)
       .then((mongoose) => {
@@ -38,10 +38,12 @@ async function connectDB() {
   try {
     cached.conn = await cached.promise;
   } catch (e) {
-    // Rest promise on connection failure to allow retries
+    // Reset promise on connection failure to allow retries
     cached.promise = null;
     throw e;
   }
+
   return cached.conn;
 }
+
 export default connectDB;
