@@ -12,11 +12,11 @@ if (!cached) {
 /**
  * Connects to MongoDB using Mongoose with connection caching
  * Implements a singleton pattern to prevent multiple connections in serverless environments
- * @return {Promise<mongoose.Connection>} Estbalished Mongoose connection
+ * @returns {Promise<mongoose.Connection>} Estbalished Mongoose connection
  */
-async function connectDB(params) {
+async function connectDB() {
   // Return cached connection if available
-  if (cached.com) {
+  if (cached.conn) {
     return cached.conn;
   }
 
